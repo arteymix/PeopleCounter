@@ -16,6 +16,8 @@ import javax.swing.table.TableModel;
  * @author guillaume
  */
 public class Place<T> implements TableModel {
+    
+    
 
     private HashMap<T, Boolean> mIndividuals = new HashMap<>();
     public HashSet<T> mMatchAgainst = new HashSet<>();
@@ -29,9 +31,9 @@ public class Place<T> implements TableModel {
     }
     private ArrayList<TableModelListener> mTableModelListener = new ArrayList<>();
 
-    public void scan(T id) {
+    public void scan(T id) throws NotMatchingException {
         if (!mMatchAgainst.contains(id)) {
-            return;
+            throw new NotMatchingException();
         }
 
         if (!mIndividuals.containsKey(id)) {
@@ -47,9 +49,9 @@ public class Place<T> implements TableModel {
         }
     }
 
-    public void scanIn(T id) {
+    public void scanIn(T id) throws NotMatchingException {
         if (!mMatchAgainst.contains(id)) {
-            return;
+            throw new NotMatchingException();
         }
 
         mIndividuals.put(id, true);
@@ -57,9 +59,9 @@ public class Place<T> implements TableModel {
 
     }
 
-    public void scanOut(T id) {
+    public void scanOut(T id) throws NotMatchingException {
         if (!mMatchAgainst.contains(id)) {
-            return;
+            throw new NotMatchingException();
         }
 
         mIndividuals.put(id, false);
@@ -170,3 +172,5 @@ public class Place<T> implements TableModel {
         private static final Place INSTANCE = new Place();
     }
 }
+
+
