@@ -31,10 +31,10 @@ public class PeopleCounterJFrame extends javax.swing.JFrame {
         Place.instance().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
-                jTextField1.setText("");
-                jTextField2.setText(Integer.toString(Place.instance().getCount()));
-                jTextField3.setText(Integer.toString(Place.instance().getCountIn()));
-                jTextField4.setText(Integer.toString(Place.instance().getCountOut()));
+                tIDInput.setText("");
+                tCount.setText(Integer.toString(Place.instance().getCount()));
+                tCountIn.setText(Integer.toString(Place.instance().getCountIn()));
+                tCountOut.setText(Integer.toString(Place.instance().getCountOut()));
             }
         });
     }
@@ -50,20 +50,21 @@ public class PeopleCounterJFrame extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        tIDInput = new javax.swing.JTextField();
+        bScan = new javax.swing.JButton();
+        bScanIn = new javax.swing.JButton();
+        bScanOut = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        tCount = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        tCountIn = new javax.swing.JTextField();
+        tCountOut = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PeopleCounter");
+        setMinimumSize(new java.awt.Dimension(694, 523));
 
         jTable1.setModel(Place.instance());
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -73,36 +74,42 @@ public class PeopleCounterJFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+        tIDInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tIDInputKeyReleased(evt);
             }
         });
 
-        jButton1.setText("Scan");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bScan.setText("Scan");
+        bScan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bScanActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Scan in");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bScanIn.setText("Scan in");
+        bScanIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bScanInActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Scan out");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bScanOut.setText("Scan out");
+        bScanOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bScanOutActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Count");
 
+        tCount.setEditable(false);
+
         jLabel2.setText("Count in");
+
+        tCountIn.setEditable(false);
+
+        tCountOut.setEditable(false);
 
         jLabel3.setText("Count out");
 
@@ -115,27 +122,27 @@ public class PeopleCounterJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1)
+                        .addComponent(tIDInput)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(bScan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(bScanIn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
+                        .addComponent(bScanOut))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tCount, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tCountIn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tCountOut, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -143,19 +150,19 @@ public class PeopleCounterJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(tIDInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bScan)
+                    .addComponent(bScanIn)
+                    .addComponent(bScanOut))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tCountIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tCountOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lError, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
                 .addContainerGap())
@@ -164,55 +171,51 @@ public class PeopleCounterJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void bScanInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bScanInActionPerformed
         try {
-            Place.instance().scanIn(jTextField1.getText());
-            jLabel4.setText("");
+            Place.instance().scanIn(tIDInput.getText());
+            lError.setText("");
         } catch (NotMatchingException nme) {
-            jLabel4.setText("N'est pas dans la liste");
+            lError.setText("N'est pas dans la liste");
         }
 
         jTable1.updateUI();
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_bScanInActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bScanOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bScanOutActionPerformed
         try {
-            Place.instance().scanIn(jTextField1.getText());
-            jLabel4.setText("");
+            Place.instance().scanOut(tIDInput.getText());
+            lError.setText("");
         } catch (NotMatchingException nme) {
-            jLabel4.setText("N'est pas dans la liste");
+            lError.setText("N'est pas dans la liste");
         }
         jTable1.updateUI();
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_bScanOutActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bScanActionPerformed
         try {
-            Place.instance().scanIn(jTextField1.getText());
-            jLabel4.setText("");
+            Place.instance().scan(tIDInput.getText());
+            lError.setText("");
         } catch (NotMatchingException nme) {
-            jLabel4.setText("N'est pas dans la liste");
+            lError.setText("N'est pas dans la liste");
         }
         jTable1.updateUI();
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bScanActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        jTextField1.setText((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        tIDInput.setText((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void tIDInputKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tIDInputKeyReleased
+        System.out.println(evt.getKeyCode());
+        // Si on pèse sur Enter
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            try {
-                Place.instance().scanIn(jTextField1.getText());
-                jLabel4.setText("");
-            } catch (NotMatchingException nme) {
-                jLabel4.setText("N'est pas dans la liste");
-            }
+            bScanActionPerformed(null);
         }
-
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_tIDInputKeyReleased
 
     /**
      * @param args the command line arguments
@@ -283,18 +286,18 @@ public class PeopleCounterJFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton bScan;
+    private javax.swing.JButton bScanIn;
+    private javax.swing.JButton bScanOut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lError;
+    private javax.swing.JTextField tCount;
+    private javax.swing.JTextField tCountIn;
+    private javax.swing.JTextField tCountOut;
+    private javax.swing.JTextField tIDInput;
     // End of variables declaration//GEN-END:variables
 }
